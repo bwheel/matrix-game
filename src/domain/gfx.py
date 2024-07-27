@@ -6,7 +6,7 @@ import pygame
 from ..components import Fonts, FontSizes
 
 def create_screen(screen_size: Tuple[int, int]) -> pygame.Surface:
-    win_style = pygame.DOUBLEBUF # | pygame.FULLSCREEN
+    win_style = pygame.DOUBLEBUF | pygame.FULLSCREEN
     best_depth = pygame.display.mode_ok(screen_size, win_style, 32)
     screen = pygame.display.set_mode(screen_size, win_style, best_depth)
     return screen

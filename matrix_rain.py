@@ -38,11 +38,23 @@ def seed_rain(cols: int, letter_width: float, screen_height: int):
 
 def seed_cascade(col: float, screen_height: int):
     font_size = random.choice(list(FontSizes))
+    match font_size:
+        case FontSizes.EXTRA_LARGE:
+            speed = random.randint(10,15)
+        case FontSizes.LARGE:
+            speed = random.randint(10,12)
+        case FontSizes.MEDIUM:
+            speed = random.randint(5,9)
+        case FontSizes.SMALL:
+            speed = random.randint(3,5)
+        case _:
+            speed = random.randint(1,3)
+            
     letter_height = gfx.get_letter_height(font_size)
     start_row = random.randint(0, screen_height)
     max_row_count = int((screen_height / 3.0) / letter_height)
     rows = random.randint(0, max_row_count)
-    speed = random.uniform(1,15)
+    
 
     rotation_interval = None
 
@@ -138,12 +150,29 @@ def main():
                 if event.type == pygame.QUIT:
                     keep_running = False
                     break
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    keep_running = False
-                    break
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    _, display = esper.get_component(Display)[0]
-                    display.color = rng.get_random_color()
+                elif event.type == pygame.KEYDOWN:
+                    match event.key:
+                        case pygame.K_ESCAPE:
+                            keep_running = False
+                        case pygame.K_SPACE:
+                            _, display = esper.get_component(Display)[0]
+                            display.color = rng.get_random_color()
+                        case pygame.K_UP:
+                            for _, (v) in esper.get_component(Velocity):
+                                #v.speed /= 2
+                                speed = v.speed - 1
+                                if speed >= 0:
+                                    v.speed = speed
+                        case pygame.K_DOWN:
+                            for _, (v) in esper.get_component(Velocity):
+                                #v.speed *= 2
+                                speed = v.speed + 1
+                                if speed <= 100:
+                                    v.speed = speed
+                        case _:
+                            pass
+                                    
+
             
             # run systems
             esper.process()
