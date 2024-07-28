@@ -8,7 +8,7 @@
             "name": "Matrix Rain",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/matrix_rain.py",
+            "program": "${workspaceFolder}/python/matrix_rain.py",
             "console": "integratedTerminal"
         }
     ]
