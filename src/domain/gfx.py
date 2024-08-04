@@ -23,7 +23,6 @@ def get_font_file():
 
     font_file = "../assets/FromCartoonBlocks.ttf" if Path(
         "../assets/FromCartoonBlocks.ttf").exists() else pygame.font.get_default_font()
-    logging.debug(font_file)
     return font_file
 
 
