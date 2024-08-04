@@ -1,22 +1,25 @@
+"""
+Entry Point
+"""
 import sys
 import logging
-from pathlib import Path
-import random
-from typing import List, Tuple, Dict, Optional
-from dataclasses import dataclass as component
 
 import esper
 import pygame
 
-from src.components import Position, Velocity, Character, Display, FontSize, FontSizes, Fonts, Glow, Glows, Rotatable
-from src.processors import RenderProcessor, MovementProcessor
-from src.domain import rng
-from src.domain import gfx
-from src.domain import seeds
-from src.processors.rotation_processor import RotationProcessor
+from components.display import Display
+from components.font_size import FontSizes
+from components.velocity import Velocity
+from domain import gfx, rng, seeds
+from processors.movement_processor import MovementProcessor
+from processors.render_processor import RenderProcessor
+from processors.rotation_processor import RotationProcessor
 
 
 def main():
+    """
+    Main Entry-point
+    """
     try:
         logging.basicConfig(level=logging.DEBUG)
         # setup display engine
@@ -34,13 +37,12 @@ def main():
             screen_size=screen_size,
             background_color=background_color,
             font_color=font_color)
-        cols =  int(screen_size[0] / letter_width)
+        cols = int(screen_size[0] / letter_width)
         seeds.seed_rain(cols, letter_width, screen_size[1])
-        
+
         esper.add_processor(MovementProcessor())
         esper.add_processor(RenderProcessor())
         esper.add_processor(RotationProcessor())
-
 
         keep_running = True
         while keep_running:
@@ -53,35 +55,34 @@ def main():
                         case pygame.K_ESCAPE:
                             keep_running = False
                         case pygame.K_SPACE:
-                            logging.debug(f"KeyPress [space]`")
+                            logging.debug("KeyPress [space]`")
                             _, display = esper.get_component(Display)[0]
                             display.color = rng.get_random_color()
                         case pygame.K_UP:
-                            logging.debug(f"KeyPress [up]")
+                            logging.debug("KeyPress [up]")
                             for _, (v) in esper.get_component(Velocity):
-                                #v.speed /= 2
+                                # v.speed /= 2
                                 speed = v.speed - 1
                                 if speed >= 0:
                                     v.speed = speed
                         case pygame.K_DOWN:
-                            logging.debug(f"KeyPress [down]")
+                            logging.debug("KeyPress [down]")
                             for _, (v) in esper.get_component(Velocity):
-                                #v.speed *= 2
+                                # v.speed *= 2
                                 speed = v.speed + 1
                                 if speed <= 100:
                                     v.speed = speed
                         case _:
                             pass
-                                    
 
-            
             # run systems
             esper.process()
-            
+
             # apply rendering
             pygame.display.update()
             clock.tick(60)
-        
+
+    # pylint: disable=broad-exception-caught
     except Exception as ex:
         print(str(ex))
         sys.exit(1)
