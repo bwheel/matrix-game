@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Tuple, Optional, Union
 import colorsys
 
@@ -5,8 +6,17 @@ import pygame
 
 from ..components import Fonts, FontSizes
 
+def get_font_file():
+    # {
+    #     "assets/FiraCode.ttf" : Path("assets/FiraCode.ttf").exists(),
+    #     "assets/FromCartoonBlocks.ttf" : Path("assets/FiraCode.ttf").exists()
+    # }
+    
+    font_file = "assets/FromCartoonBlocks.ttf" if Path("assets/FromCartoonBlocks.ttf").exists() else pygame.font.get_default_font()
+    return font_file
+
 def create_screen(screen_size: Tuple[int, int]) -> pygame.Surface:
-    win_style = pygame.DOUBLEBUF | pygame.FULLSCREEN
+    win_style = pygame.DOUBLEBUF #| pygame.FULLSCREEN
     best_depth = pygame.display.mode_ok(screen_size, win_style, 32)
     screen = pygame.display.set_mode(screen_size, win_style, best_depth)
     return screen
@@ -18,19 +28,19 @@ def get_screen_size() -> Tuple[int, int]:
 
 def get_font_size(font: Union[pygame.font.Font, FontSizes]) -> Tuple[int, int]:
     if isinstance(font, FontSizes):
-        font = pygame.font.Font(pygame.font.get_default_font(), font.value)
+        font = pygame.font.Font(get_font_file(), font.value)
     font_surface = font.render("_", False, (0,0,0))
     return (font_surface.get_width(), font_surface.get_height())
 
 def get_letter_height(font: Union[pygame.font.Font, FontSizes]) -> int:
     if isinstance(font, FontSizes):
-        font = pygame.font.Font(pygame.font.get_default_font(), font.value)
+        font = pygame.font.Font(get_font_file(), font.value)
     font_surface = font.render("_", False, (0,0,0))
     return font_surface.get_height()
 
 def get_letter_width(font: Union[pygame.font.Font, FontSizes]) -> int:
     if isinstance(font, FontSizes):
-        font = pygame.font.Font(pygame.font.get_default_font(), font.value)
+        font = pygame.font.Font(get_font_file(), font.value)
     font_surface = font.render("_", False, (0,0,0))
     return font_surface.get_width()
 

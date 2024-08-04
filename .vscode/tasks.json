@@ -1,0 +1,17 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup dev(win)",
+      "type": "shell",
+      "command": "python -m venv venv ; venv/scripts/activate ; pip install -r requirements.txt"
+    },
+    {
+      "label": "Package",
+      "type": "shell",
+      "command": "pyinstaller matrix_rain.py --windowed --onefile"
+    }
+  ]
+}
