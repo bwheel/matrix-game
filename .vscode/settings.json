@@ -1,9 +1,0 @@
-{
-  "pylint.args": [
-    "--extension-pkg-whitelist=pygame"
-  ],
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8",
-    "editor.formatOnSave": true
-  }
-}

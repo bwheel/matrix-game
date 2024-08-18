@@ -37,16 +37,14 @@ def get_random_speed_from_font_size(font_size: FontSizes) -> float:
     """
     Get Random Speed from Font Size
     """
-    speed = 1.0
     match font_size:
         case FontSizes.EXTRA_LARGE:
-            speed = random.randint(10, 15)
+            return random.randint(10.0, 12.0)
         case FontSizes.LARGE:
-            speed = random.randint(10, 12)
+            return random.randint(9.0, 10.0)
         case FontSizes.MEDIUM:
-            speed = random.randint(5, 9)
+            return random.randint(5.0, 8.0)
         case FontSizes.SMALL:
-            speed = random.randint(3, 5)
+            return random.randint(3.0, 5.0)
         case _:
-            speed = random.randint(1, 3)
-    return float(speed)
+            return random.randint(1.0, 3.0)

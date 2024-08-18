@@ -65,6 +65,7 @@ def main():
                                 speed = v.speed - 1
                                 if speed >= 0:
                                     v.speed = speed
+                                    #v.speed /= 10.0
                         case pygame.K_DOWN:
                             logging.debug("KeyPress [down]")
                             for _, (v) in esper.get_component(Velocity):
@@ -72,6 +73,7 @@ def main():
                                 speed = v.speed + 1
                                 if speed <= 100:
                                     v.speed = speed
+                                    #v.speed *= 10.0
                         case _:
                             pass
 

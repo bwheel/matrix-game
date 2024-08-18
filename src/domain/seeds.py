@@ -94,7 +94,7 @@ def seed_cascade(col: float, screen_height: int):
             flip = random.uniform(0, 1)
             if flip > .99:
                 glow = Glows.EXTRA_BRIGHT
-                rotation_interval = random.choice([250, 500, 800, 1000, 1500])
+                rotation_interval = random.choice([250, 500, 800, 1000])
 
         y = start_row + row * letter_height
         if y >= screen_height:
