@@ -1,0 +1,6 @@
+# cmake
+build/
+CMakeCache.txt
+
+# vcpkg
+vcpkg_installed/
