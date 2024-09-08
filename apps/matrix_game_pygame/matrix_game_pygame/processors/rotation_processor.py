@@ -4,9 +4,9 @@ Rotation Processor Module
 import esper
 import pygame
 
-from components.character import Character
-from components.rotatable import Rotatable
-from domain import rng
+from matrix_game_pygame.components.character import Character
+from matrix_game_pygame.components.rotatable import Rotatable
+from matrix_game_pygame.domain import rng
 
 
 class RotationProcessor(esper.Processor):

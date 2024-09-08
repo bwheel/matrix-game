@@ -5,7 +5,7 @@ import random
 import string
 from typing import Tuple
 
-from components.font_size import FontSizes
+from matrix_game_pygame.components.font_size import FontSizes
 
 
 def get_random_color() -> Tuple[int, int, int]:

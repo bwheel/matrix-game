@@ -3,9 +3,9 @@ Movement Processor Module
 """
 import esper
 
-from components.display import Display
-from components.position import Position
-from components.velocity import Velocity
+from matrix_game_pygame.components.display import Display
+from matrix_game_pygame.components.position import Position
+from matrix_game_pygame.components.velocity import Velocity
 
 
 class MovementProcessor(esper.Processor):

@@ -4,13 +4,13 @@ Render Processor Module
 import esper
 
 
-from components.character import Character
-from components.display import Display
-from components.font_size import FontSize
-from components.fonts import Fonts
-from components.glow import Glow
-from components.position import Position
-from domain import gfx
+from matrix_game_pygame.components.character import Character
+from matrix_game_pygame.components.display import Display
+from matrix_game_pygame.components.font_size import FontSize
+from matrix_game_pygame.components.fonts import Fonts
+from matrix_game_pygame.components.glow import Glow
+from matrix_game_pygame.components.position import Position
+from matrix_game_pygame.domain import gfx
 
 
 class RenderProcessor(esper.Processor):

@@ -8,8 +8,8 @@ import colorsys
 
 import pygame
 
-from components.font_size import FontSizes
-from components.fonts import Fonts
+from matrix_game_pygame.components.font_size import FontSizes
+from matrix_game_pygame.components.fonts import Fonts
 
 
 def get_font_file():

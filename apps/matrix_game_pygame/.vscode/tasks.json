@@ -9,9 +9,14 @@
       "command": "python -m venv venv ; venv/scripts/activate ; pip install -r requirements.txt"
     },
     {
+      "label": "Setup dev(linux)",
+      "type": "shell",
+      "command": "python -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+    },
+    {
       "label": "Package",
       "type": "shell",
-      "command": "pyinstaller matrix_rain.py --windowed --onefile"
+      "command": "pyinstaller matrix_game_pygame/main.py --windowed --onefile --name matrix_game_pygame"
     }
   ]
 }
