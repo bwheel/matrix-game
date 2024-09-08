@@ -14,3 +14,5 @@ target_link_libraries(matrix_game_sdl2
   EntitiesLib
   SystemsLib
 )
+
+file(COPY ../resources/SpaceMono.ttf DESTINATION ${CMAKE_BINARY_DIR}/apps/resources)
