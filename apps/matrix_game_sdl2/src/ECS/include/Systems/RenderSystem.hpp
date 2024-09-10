@@ -6,7 +6,7 @@
 #include <Systems/ISystem.hpp>
 
 namespace Systems {
-class RenderSystem : ISystem {
+class RenderSystem : public ISystem {
 private:
   SDL_Renderer *m_renderer;
 

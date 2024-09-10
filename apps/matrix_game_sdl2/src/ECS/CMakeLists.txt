@@ -18,12 +18,16 @@ target_sources(ECS
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Entities/GlyphFactory.cpp
 
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/ISystem.hpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/ColorSystem.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/ColorSystem.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/MovementSystem.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/MovementSystem.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/RenderSystem.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/RenderSystem.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/RotationSystem.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/RotationSystem.cpp
 )

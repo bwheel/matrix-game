@@ -1,4 +1,6 @@
 #include <iostream>
+#include <memory>
+#include <vector>
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -63,6 +65,7 @@ int main() {
     SDL_Quit();
     return 1;
   }
+
   const char *glyph = "M";
   int textWidth = 0;
   int textHeight = 0;
@@ -106,10 +109,11 @@ int main() {
   glyphFactory.CreateStandard(100, 100, textTexture, textWidth, textHeight);
 
   // Create Systems
-  Systems::ColorSystem colorSystem(registry);
-  Systems::MovementSystem movementSystem(registry);
-  Systems::RenderSystem renderSystem(registry, renderer);
-  Systems::RotationSystem rotationSystem(registry);
+  std::vector<std::unique_ptr<Systems::ISystem>> systems;
+  systems.push_back(std::make_unique<Systems::ColorSystem>(registry));
+  systems.push_back(std::make_unique<Systems::MovementSystem>(registry));
+  systems.push_back(std::make_unique<Systems::RenderSystem>(registry, renderer));
+  systems.push_back(std::make_unique<Systems::RotationSystem>(registry));
 
   bool isRunning = true;
   SDL_Event event;
@@ -123,10 +127,9 @@ int main() {
     }
 
     // Update systems
-    movementSystem.Process(deltaTime);
-    rotationSystem.Process(deltaTime);
-    colorSystem.Process(deltaTime);
-    renderSystem.Process(deltaTime);
+    for (auto &system : systems) {
+      system->Process(deltaTime);
+    }
 
     // Delay to simulate a 60 FPS game loop
     SDL_Delay(static_cast<Uint32>(deltaTime * 1000));

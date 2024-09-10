@@ -5,7 +5,7 @@
 #include <Systems/ISystem.hpp>
 
 namespace Systems {
-class ColorSystem : ISystem {
+class ColorSystem : public ISystem {
 public:
   ColorSystem(entt::registry &registry) : ISystem(registry) {}
   void Process(float deltaTime);
