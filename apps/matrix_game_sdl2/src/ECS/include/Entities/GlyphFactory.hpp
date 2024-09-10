@@ -2,8 +2,6 @@
 #include <SDL2/SDL.h>
 #include <entt/entt.hpp>
 
-#include <Position.hpp>
-
 namespace Entities {
 
 class GlyphFactory {

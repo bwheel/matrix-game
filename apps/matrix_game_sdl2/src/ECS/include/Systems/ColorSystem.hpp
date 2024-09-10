@@ -2,12 +2,12 @@
 
 #include <entt/entt.hpp>
 
-#include <ISystem.hpp>
+#include <Systems/ISystem.hpp>
 
 namespace Systems {
-class MovementSystem : ISystem {
+class ColorSystem : ISystem {
 public:
-  MovementSystem(entt::registry &registry) : ISystem(registry) {}
+  ColorSystem(entt::registry &registry) : ISystem(registry) {}
   void Process(float deltaTime);
 };
 

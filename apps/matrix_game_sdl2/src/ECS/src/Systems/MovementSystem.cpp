@@ -1,9 +1,9 @@
-#include <MovementSystem.hpp>
+#include <Systems/MovementSystem.hpp>
 
 #include <iostream>
 
-#include <Position.hpp>
-#include <Velocity.hpp>
+#include <Components/Position.hpp>
+#include <Components/Velocity.hpp>
 
 namespace Systems {
 void MovementSystem::Process(float deltaTime) {

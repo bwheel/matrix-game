@@ -1,9 +1,9 @@
-#include <RenderSystem.hpp>
+#include <Systems/RenderSystem.hpp>
 
 #include <iostream>
 
-#include <Appearance.hpp>
-#include <Position.hpp>
+#include <Components/Appearance.hpp>
+#include <Components/Position.hpp>
 
 namespace Systems {
 void RenderSystem::Process(float deltaTime) {

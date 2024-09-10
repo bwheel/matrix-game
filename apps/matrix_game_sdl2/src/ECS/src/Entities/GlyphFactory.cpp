@@ -2,10 +2,10 @@
 #include <SDL2/SDL.h>
 #include <entt/entt.hpp>
 
-#include <Appearance.hpp>
-#include <GlyphFactory.hpp>
-#include <Position.hpp>
-#include <Velocity.hpp>
+#include <Components/Appearance.hpp>
+#include <Components/Position.hpp>
+#include <Components/Velocity.hpp>
+#include <Entities/GlyphFactory.hpp>
 
 namespace Entities {
 

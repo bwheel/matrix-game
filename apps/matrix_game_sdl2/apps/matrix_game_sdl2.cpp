@@ -4,13 +4,12 @@
 #include <SDL_ttf.h>
 #include <entt/entt.hpp>
 
-#include <GlyphFactory.hpp>
-
-#include <ColorSystem.hpp>
-#include <ISystem.hpp>
-#include <MovementSystem.hpp>
-#include <RenderSystem.hpp>
-#include <RotationSystem.hpp>
+#include <Entities/GlyphFactory.hpp>
+#include <Systems/ColorSystem.hpp>
+#include <Systems/ISystem.hpp>
+#include <Systems/MovementSystem.hpp>
+#include <Systems/RenderSystem.hpp>
+#include <Systems/RotationSystem.hpp>
 
 void printSDL() {
 

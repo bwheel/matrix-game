@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <ColorSystem.hpp>
+#include <Systems/ColorSystem.hpp>
 
 namespace Systems {
 void ColorSystem::Process(float deltaTime) {}

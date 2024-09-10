@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <entt/entt.hpp>
 
-#include <ISystem.hpp>
+#include <Systems/ISystem.hpp>
 
 namespace Systems {
 class RenderSystem : ISystem {

@@ -10,9 +10,7 @@ target_link_libraries(matrix_game_sdl2
   SDL2::SDL2main
   SDL2::SDL2-static
   SDL2_ttf::SDL2_ttf-static
-  ComponentsLib
-  EntitiesLib
-  SystemsLib
+  ECS
 )
 
 file(COPY ../resources/SpaceMono.ttf DESTINATION ${CMAKE_BINARY_DIR}/apps/resources)
