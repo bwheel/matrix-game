@@ -7,6 +7,7 @@
 #include <entt/entt.hpp>
 
 #include <Entities/GlyphFactory.hpp>
+#include <Services/FontCache.hpp>
 #include <Systems/ColorSystem.hpp>
 #include <Systems/ISystem.hpp>
 #include <Systems/MovementSystem.hpp>
@@ -56,57 +57,20 @@ int main() {
   }
 
   // Load a font
-  TTF_Font *font = TTF_OpenFont("resources/SpaceMono.ttf", 24); // Adjust font path and size as needed
-  if (!font) {
-    std::cerr << "TTF_OpenFont Error: " << TTF_GetError() << std::endl;
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    TTF_Quit();
-    SDL_Quit();
-    return 1;
-  }
-
-  const char *glyph = "M";
-  int textWidth = 0;
-  int textHeight = 0;
-  if (TTF_SizeText(font, glyph, &textWidth, &textHeight) != 0) {
-    std::cerr << "TTF_SizeText Error: " << TTF_GetError() << std::endl;
-    TTF_CloseFont(font);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    TTF_Quit();
-    SDL_Quit();
-    return 1;
-  }
-  std::cout << "textWidth: " << textWidth << " textHeight: " << textHeight << std::endl;
-  SDL_Color textColor = {255, 255, 255, 255}; // White
-  SDL_Surface *textSurface = TTF_RenderText_Solid(font, glyph, textColor);
-  if (!textSurface) {
-    std::cerr << "TTF_RenderText_Solid Error: " << TTF_GetError() << std::endl;
-    TTF_CloseFont(font);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    TTF_Quit();
-    SDL_Quit();
-    return 1;
-  }
-
-  SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-  SDL_FreeSurface(textSurface);
-  if (!textTexture) {
-    std::cerr << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
-    TTF_CloseFont(font);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    TTF_Quit();
-    SDL_Quit();
-    return 1;
-  }
+  Services::FontCache fontCache(renderer);
+  SDL_Color white = {255, 255, 255, 255}; // White
+  fontCache.LoadFont("resources/SpaceMono.ttf", Components::FontSize::Small, white);
 
   // Create EnTT registry
   entt::registry registry;
   Entities::GlyphFactory glyphFactory(registry);
-  glyphFactory.CreateStandard(100, 100, textTexture, textWidth, textHeight);
+  int x = 50;
+  int y = 50;
+  for (auto letter : {'a', 'b', 'c', 'd'}) {
+    Services::FontGlyph *glyph = fontCache.Get(letter);
+    glyphFactory.CreateStandard(x, y, glyph->texture, glyph->width, glyph->height);
+    x += 50;
+  }
 
   // Create Systems
   std::vector<std::unique_ptr<Systems::ISystem>> systems;

@@ -1,6 +1,5 @@
 #pragma once
 #include <array>
-#include <cstdint>
 
 #include <SDL2/SDL.h>
 

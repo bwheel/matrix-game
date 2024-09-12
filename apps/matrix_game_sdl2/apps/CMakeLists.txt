@@ -12,6 +12,7 @@ target_link_libraries(matrix_game_sdl2
   SDL2::SDL2-static
   SDL2_ttf::SDL2_ttf-static
   ECS
+  Core
 )
 
 target_link_libraries(print_font_sizes
