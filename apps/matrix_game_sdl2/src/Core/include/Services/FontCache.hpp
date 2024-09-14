@@ -6,6 +6,7 @@
 #include <SDL_ttf.h>
 
 #include <Components/Appearance.hpp>
+#include <Utils/Alphabet.hpp>
 
 namespace Services {
 
@@ -23,7 +24,8 @@ private:
 public:
   FontCache(SDL_Renderer *renderer) : m_renderer(renderer) {}
   ~FontCache();
-  bool LoadFont(const char *filePath, const Components::FontSize fontSize, SDL_Color &textColor);
+  bool LoadFont(const std::array<char, Utils::ALPHABET_SIZE> alphabet, const char *filePath, const Components::FontSize fontSize, SDL_Color &textColor);
   FontGlyph *Get(char key);
+  FontGlyph *GetRandom();
 };
 } // namespace Services

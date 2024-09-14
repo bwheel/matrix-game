@@ -1,6 +1,7 @@
 #include <Utils/Alphabet.hpp>
 
 #include <array>
+#include <cstdlib>
 namespace Utils {
 
 const std::array<char, Utils::ALPHABET_SIZE> ALPHABET() {
@@ -27,5 +28,8 @@ const std::array<char, Utils::ALPHABET_SIZE> ALPHABET() {
   }();
   return characters;
 }
-
+const char RANDOM_LETTER() {
+  int letterIndex = rand() % ALPHABET_SIZE;
+  return ALPHABET().at(letterIndex);
+}
 } // namespace Utils

@@ -13,6 +13,7 @@
 #include <Systems/MovementSystem.hpp>
 #include <Systems/RenderSystem.hpp>
 #include <Systems/RotationSystem.hpp>
+#include <Utils/Alphabet.hpp>
 
 void printSDL() {
 
@@ -25,6 +26,18 @@ void printSDL() {
 
   std::cout << "Compiled against SDL version: " << (int)compiled.major << "." << (int)compiled.minor << "." << (int)compiled.patch << std::endl;
   std::cout << "Linked against SDL version: " << (int)linked.major << "." << (int)linked.minor << "." << (int)linked.patch << std::endl;
+}
+
+void CreateStream(Entities::GlyphFactory glyphFactory, Services::FontCache fontCache, float x) {
+  int lettersPerScreen = 600 / fontCache.Get('A')->height; // TODO better screen size
+  int streamSize = rand() % lettersPerScreen + 1;
+  int prevHeight = 50;
+  for (int y = 0; y < streamSize; y++) {
+    Services::FontGlyph *glyph = fontCache.GetRandom();
+    int yPos = prevHeight + glyph->height;
+    glyphFactory.CreateStandard(x, yPos, glyph->texture, glyph->width, glyph->height);
+    prevHeight += glyph->height;
+  }
 }
 
 int main() {
@@ -59,16 +72,18 @@ int main() {
   // Load a font
   Services::FontCache fontCache(renderer);
   SDL_Color white = {255, 255, 255, 255}; // White
-  fontCache.LoadFont("resources/SpaceMono.ttf", Components::FontSize::Small, white);
+  fontCache.LoadFont(Utils::ALPHABET(), "resources/SpaceMono.ttf", Components::FontSize::Small, white);
 
   // Create EnTT registry
   entt::registry registry;
   Entities::GlyphFactory glyphFactory(registry);
   int x = 50;
   int y = 50;
-  for (auto letter : {'a', 'b', 'c', 'd'}) {
-    Services::FontGlyph *glyph = fontCache.Get(letter);
-    glyphFactory.CreateStandard(x, y, glyph->texture, glyph->width, glyph->height);
+  Services::FontGlyph *glyph = fontCache.GetRandom();
+  // glyphFactory.CreateStandard(x, y, glyph->texture, glyph->width, glyph->height);
+
+  for (auto letter : Utils::ALPHABET()) {
+    CreateStream(glyphFactory, fontCache, 50);
     x += 50;
   }
 
@@ -87,6 +102,10 @@ int main() {
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         isRunning = false;
+        break;
+      } else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
+        isRunning = false;
+        break;
       }
     }
 

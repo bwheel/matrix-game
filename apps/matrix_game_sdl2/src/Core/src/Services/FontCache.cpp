@@ -1,5 +1,8 @@
 #include <Services/FontCache.hpp>
 
+#include <array>
+#include <cstdlib>
+
 #include <Components/Appearance.hpp>
 #include <Utils/Alphabet.hpp>
 
@@ -12,14 +15,14 @@ FontCache::~FontCache() {
   m_textures.clear();
 }
 
-bool FontCache::LoadFont(const char *filePath, const Components::FontSize fontSize, SDL_Color &textColor) {
+bool FontCache::LoadFont(const std::array<char, Utils::ALPHABET_SIZE> alphabet, const char *filePath, const Components::FontSize fontSize, SDL_Color &textColor) {
   TTF_Font *font = TTF_OpenFont(filePath, static_cast<int>(fontSize));
   if (!font) {
     return false;
   }
   int textWidth = 0;
   int textHeight = 0;
-  for (auto letter : Utils::ALPHABET()) {
+  for (auto letter : alphabet) {
     if (TTF_SizeText(font, &letter, &textWidth, &textHeight) != 0) {
       return false;
     }
@@ -35,4 +38,5 @@ bool FontCache::LoadFont(const char *filePath, const Components::FontSize fontSi
   return true;
 }
 FontGlyph *FontCache::Get(char key) { return &m_textures[key]; }
+FontGlyph *FontCache::GetRandom() { return Get(Utils::RANDOM_LETTER()); }
 } // namespace Services
