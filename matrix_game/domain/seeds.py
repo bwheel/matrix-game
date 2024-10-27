@@ -7,17 +7,17 @@ from typing import Tuple, Optional
 import pygame
 import esper
 
-from matrix_game_pygame.components.character import Character
-from matrix_game_pygame.components.display import Display
-from matrix_game_pygame.components.font_size import FontSize, FontSizes
-from matrix_game_pygame.components.fonts import Fonts
-from matrix_game_pygame.components.glow import Glow, Glows
-from matrix_game_pygame.components.position import Position
-from matrix_game_pygame.components.rotatable import Rotatable
-from matrix_game_pygame.components.velocity import Velocity
+from matrix_game.components.character import Character
+from matrix_game.components.display import Display
+from matrix_game.components.font_size import FontSize, FontSizes
+from matrix_game.components.fonts import Fonts
+from matrix_game.components.glow import Glow, Glows
+from matrix_game.components.position import Position
+from matrix_game.components.rotatable import Rotatable
+from matrix_game.components.velocity import Velocity
 
-import matrix_game_pygame.domain.gfx as gfx
-import matrix_game_pygame.domain.rng as rng
+import matrix_game.domain.gfx as gfx
+import matrix_game.domain.rng as rng
 
 
 def seed_display(

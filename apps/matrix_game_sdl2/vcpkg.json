@@ -1,9 +1,0 @@
-{
-  "name": "matrix-game-sdl2",
-  "version-string": "2024.09.07",
-  "dependencies": [
-    "sdl2",
-    "sdl2-ttf",
-    "entt"
-  ]
-}

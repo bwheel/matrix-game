@@ -16,7 +16,7 @@
     {
       "label": "Package",
       "type": "shell",
-      "command": "pyinstaller matrix_game_pygame/main.py --windowed --onefile --name matrix_game_pygame"
+      "command": "pyinstaller matrix_game/main.py --windowed --onefile --name matrix_game"
     }
   ]
 }

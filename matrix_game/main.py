@@ -7,13 +7,13 @@ import logging
 import esper
 import pygame
 
-from matrix_game_pygame.components.display import Display
-from matrix_game_pygame.components.font_size import FontSizes
-from matrix_game_pygame.components.velocity import Velocity
-from matrix_game_pygame.domain import gfx, rng, seeds
-from matrix_game_pygame.processors.movement_processor import MovementProcessor
-from matrix_game_pygame.processors.render_processor import RenderProcessor
-from matrix_game_pygame.processors.rotation_processor import RotationProcessor
+from matrix_game.components.display import Display
+from matrix_game.components.font_size import FontSizes
+from matrix_game.components.velocity import Velocity
+from matrix_game.domain import gfx, rng, seeds
+from matrix_game.processors.movement_processor import MovementProcessor
+from matrix_game.processors.render_processor import RenderProcessor
+from matrix_game.processors.rotation_processor import RotationProcessor
 
 
 def main():
